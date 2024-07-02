@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkfronend"]=self["webpackChunkfronend"]||[]).push([[594],{3079:function(O,n,u){u.r(n),u.d(n,{default:function(){return i}});var e=u(6768);const r={class:"about"},t=(0,e.Lk)("h1",null,"This is an about paKOOOOOOOOOOOOOOOOOOOOOCLge",-1),a=[t];function s(O,n){return(0,e.uX)(),(0,e.CE)("div",r,a)}var c=u(1241);const o={},f=(0,c.A)(o,[["render",s]]);var i=f}}]);
+//# sourceMappingURL=about.8638e322.js.map

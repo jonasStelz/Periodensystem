@@ -1,0 +1,30 @@
+{
+  "name": "periodensystem_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node-dev src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonasStelz/Periodensystem.git"
+  },
+  "author": "Jonas Stelzender",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonasStelz/Periodensystem/issues"
+  },
+  "homepage": "https://github.com/jonasStelz/Periodensystem#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.4.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.9",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.3"
+  }
+}
