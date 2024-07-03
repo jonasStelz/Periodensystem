@@ -10,20 +10,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  level1: [
-    {
-      type: String,
-    },
-  ],
-  level2: [
-    {
-      type: String,
-    },
-  ],
-  level3: [
-    {
-      type: String,
-    },
+  isAdmin: {
+    type: Boolean,
+  },
+  level: [
+    [
+      {
+        type: String,
+      },
+    ],
   ],
 });
 

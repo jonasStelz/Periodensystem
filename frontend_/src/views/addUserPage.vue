@@ -35,7 +35,7 @@ export default class AddUser extends Vue {
     try {
       console.log("kajsdfklö");
       console.log(this.formData);
-      const response = await axios.post("/api/addusers", this.formData);
+      const response = await axios.post("/api/users", this.formData);
       console.log("Neuer Benutzer wurde erstellt:", response.data);
       // Hier kannst du z.B. eine Erfolgsmeldung anzeigen oder die Benutzeroberfläche aktualisieren
     } catch (error) {

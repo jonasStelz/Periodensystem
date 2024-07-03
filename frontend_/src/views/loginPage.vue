@@ -17,6 +17,8 @@
 import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import axios from "axios";
+import { User } from "../types";
 
 export default defineComponent({
   name: "LoginPage",
@@ -26,15 +28,41 @@ export default defineComponent({
     const username = ref("");
     const password = ref("");
 
-    const login = () => {
-      // Hier könntest du die tatsächliche Authentifizierungslogik implementieren
-      // Zum Beispiel: Überprüfung von Benutzername und Passwort mit einem Server
+    const login = async () => {
+      try {
+        const response = await axios.post("/api/checklogin", {
+          username: username.value,
+          password: password.value,
+        });
 
-      // Für dieses Beispiel nehmen wir an, dass die Authentifizierung erfolgreich ist
-      store.commit("setLoggedIn", true);
+        const { message, user } = response.data;
+        if (message === "Login successful") {
+          // Erfolgreich eingeloggt
 
-      // Optional: Weiterleitung zur Startseite oder zu einer geschützten Seite
-      router.push("/");
+          const newUser: User = {
+            username: user.username,
+            password: user.password,
+            isAdmin: user.isAdmin,
+            level: user.level,
+          };
+          store.commit("setUser", newUser);
+          console.log(newUser);
+
+          console.log("Login erfolgreich!", user);
+          store.commit("setLoggedIn", true);
+          router.push("/");
+        } else {
+          // Login fehlgeschlagen
+          console.log("Login fehlgeschlagen: ", message);
+          // Hier könntest du entsprechend reagieren, z.B. Fehlermeldung anzeigen
+        }
+      } catch (error) {
+        console.error(
+          "Es gab einen Fehler beim Anfordern der Benutzerdaten!",
+          error
+        );
+        // Hier könntest du entsprechend reagieren, z.B. Fehlermeldung anzeigen
+      }
     };
 
     return {

@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes";
+import elementRoutes from "./routes/elementRoutes";
 import path from "path";
 import User from "./models/User";
 import { loadElements, getAllElementSymbols } from "./helperFunctions";
@@ -11,6 +12,7 @@ const app = express();
 
 app.use(express.json());
 app.use("/api", userRoutes);
+app.use("/api", elementRoutes);
 
 const mongoURI = "mongodb://localhost:27017/mydatabase";
 
@@ -38,35 +40,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.resolve(publicPath, "index.html"));
 });
 
-app.post("/api/addusers", async (req, res) => {
-  try {
-    console.log(req.body);
-    console.log("§Lklsdlkfalflasldflösdföjlaölsdfjöl");
-
-    const username = req.body.username;
-
-    const password = crypto
-      .createHash("sha256")
-      .update(req.body.password)
-      .digest("hex");
-
-    console.log(username);
-    console.log(password);
-
-    console.log(await getAllElementSymbols());
-
-    const newUser = new User({
-      username: username,
-      password: password,
-      level1: await getAllElementSymbols(),
-    });
-
-    //const newUser = new User(req.body);
-    await newUser.save();
-    res.status(201).json(newUser);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
+// Überprüfen, ob der Benutzer existiert
 
 export default app;
